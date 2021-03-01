@@ -11,3 +11,5 @@ registerpageクラスに定数idを宣言する。後にnavigatorでの画面遷
 signin_page.dartを同様にコピペ
 signinpageクラスにnavigator用にidを同じように宣言する
 160行目の _EmailLinkSignInSectionクラスから下のコードは消す
+Stateで呼び出してる消されたクラスの記述も消す
+importされてるものも不必要なものは消す
