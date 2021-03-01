@@ -9,3 +9,4 @@ registerpageクラスに定数idを宣言する。後にnavigatorでの画面遷
   static const String id = 'register_page';
 
 signin_page.dartを同様にコピペ
+signinpageクラスにnavigator用にidを同じように宣言する
