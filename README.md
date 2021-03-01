@@ -1,16 +1,11 @@
-# firebase_y
+firebaseのユーザー関連から (導入は省く)
+firebaseのwebページから、左メニューのAuthenticationにて、メール・パスワードの上のを有効にする
+次に、yamlにfirebase_auth, fluter_signin_buttonを導入
+firebase_authは以下のリンクより詳細
+https://pub.dev/packages/firebase_auth/example
 
-A new Flutter application.
+登録画面はサンプルコードより、register_page.dartをそのままコピる
+registerpageクラスに定数idを宣言する。後にnavigatorでの画面遷移時に使う
+  static const String id = 'register_page';
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+signin_page.dartを同様にコピペ
