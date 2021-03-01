@@ -18,3 +18,23 @@ importされてるものも不必要なものは消す
 ここでそれぞれの画面に追加した定数idを使う。
 各画面のクラスに名前をもたせておくことで呼び出しを簡単にする
 initialRouteで指定した画面名のwidgetが初期画面として表示される。登録画面を初期画面とする。
+また、
+この時点で登録画面でデータを登録できるはずだが、環境によってできない場合もあるので、その場合は
+register_pageの_RegisterPageStateクラスの_registerメソッドを編集する
+
+  Future<void> _register() async {
+    final User user = (await _auth.createUserWithEmailAndPassword(
+      email: _emailController.text,
+      password: _passwordController.text,
+    ))
+        .user;
+
+  を
+  
+  void _register() async {
+    try {
+      final User user = (await _auth.createUserWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      ))
+         .user;
