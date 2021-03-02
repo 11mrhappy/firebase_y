@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 
 import './screen/register_page.dart';
 import './screen/signin_page.dart';
+import './screen/welcome.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,10 +16,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter chatapp textbook',
-      initialRoute: RegisterPage.id,
+      initialRoute: WelcomePage.id,
       routes: {
         RegisterPage.id: (context) => RegisterPage(),
         SignInPage.id: (context) => SignInPage(),
+        WelcomePage.id: (context) => WelcomePage(),
       }
     );
   }

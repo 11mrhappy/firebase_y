@@ -41,3 +41,25 @@ register_pageの_RegisterPageStateクラスの_registerメソッドを編集す�
 
 アプリの初期画面
 また、動的に変化する部分がないからstatelessにする。
+
+レイアウトの基本
+Column(列)、Row(行)
+
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  mainAxisSize: MainAxisSize.min,
+  children: [
+    Text('1行目'),
+    Text('2行目'),
+    Text('3行目'),
+    
+  ],
+)
+とすることで、テキストを3行分縦に並べる
+crossAxisAlignmentで左右位置を変える
+mainAxisAlignmentは上下位置、mainAxisSizeは上下サイズ
+
+Containerは中に別のWidgetを配置することでレイアウトの補助的な役割を果たす。様々な位置指定が可能になる
+コンテナのプロパティについては
+colorは背景色、borderRadiusは角
+
