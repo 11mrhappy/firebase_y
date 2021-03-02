@@ -63,3 +63,40 @@ Containerは中に別のWidgetを配置することでレイアウトの補助�
 コンテナのプロパティについては
 colorは背景色、borderRadiusは角
 
+データ管理には「Cloud Firestore」を使い、一連の会話を保管する「Collection : messages」を定義する
+具体的には、Collectionに1つの発言を「1 document」として「発言内容(messages)、発言者(sender)、発言日時(time)」を記録する
+Cloud FirestoreはCollectionに対して簡単にデータの読み込みができる
+例えば、今回の会話のデータを書き込む場合、collectionに対してaddメソッドを発行するだけでデータの追加が完了する
+また、FieldValue.serverTimestamp()を値として指定することでサーバー側でタイムスタンプを記録することもできる
+例
+final _db = FirebaseFirestore.instance;
+_db.collection('messages').add({
+               'sender': _user.email,
+               'text': messageText,
+               'time': FieldValue.serverTimestamp(),
+});
+
+読み出しについては、直接ドキュメントを読み出すことも可能だけど、「コレクション」に対して「クエリ」を発行することもできる
+今回は最新の50エントリを取得したいので、時間で並び替えて取得するように書く
+このとき返されるのは直接のデータじゃなくてsnapshotというクエリ結果の集合オブジェクトとなる
+例
+_db.collection('messages')
+   .orderBy('time', descending: true)
+   .limit(50)
+   .snapshots()
+
+snapshotは、サーバのデータが更新されるとsnapshotのデータが同期して更新されるという機能を持つ。
+つまり、データの更新をプログラマーがいちいち確認しにいく必要がなくなる。
+さらに、Streamの機能と相性が良い。
+Firestore上の特定のコレクションの更新を監視して、更新の旅に処理を行うためにFlutterのStreamBuilderクラスを利用する
+StreamBuilderを使うとサーバ上のデータ更新があるたびにbuilderで指定した関数が呼び出され、自動的に画面をbuildしてくれるようになる
+例
+StreamBuilder<QuerySnapshot>(
+  stream: _db
+    .collection('messages)
+    .orderBy('time', descending: true)
+    .limit(50)
+    .snapshots(),
+  builder: (context, snapshot) {
+.....
+
