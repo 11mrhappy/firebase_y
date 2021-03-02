@@ -38,3 +38,6 @@ register_pageの_RegisterPageStateクラスの_registerメソッドを編集す�
         password: _passwordController.text.trim(),
       ))
          .user;
+
+アプリの初期画面
+また、動的に変化する部分がないからstatelessにする。
