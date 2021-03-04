@@ -138,11 +138,9 @@ class _EmailPasswordFormState extends State<_EmailPasswordForm> {
       ))
           .user;
 
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text('${user.email} signed in'),
-        ),
-      );
+      if  (user != null) {
+        Navigator.pushNamed(context, ChatPage.id);
+      }
     } catch (e) {
       Scaffold.of(context).showSnackBar(
         const SnackBar(
